@@ -38,7 +38,7 @@ int negative(int x)
 int getByte(int x, int n)
 {
 	    // Dịch phải 8 bit, sau đó and với 11
-	return (x >> 8 * n) & 0xFF;
+	return (x >> (n << 3) & 0xFF;
 
 }
 
