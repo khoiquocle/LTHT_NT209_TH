@@ -93,8 +93,8 @@ int isPositive(int x)
 {
 int zero=!x;        //bài toán sẽ kiểm tra bit dấu để xác định, tuy nhiên số 0 có bit dấu =0
 int signbit=x>>31; 	//nhưng return kq=0 nên phải có 1 biến zero dùng !x để kiểm tra có phải số 0 hay không
- return !(zero^signbit);   //kiểm tra bit dấu bằng cách dịch phải 31 bit để lúc này số chỉ còn 1 bit dấu nằm ở trọng số thấp nhất, các bit còn lại sẽ=0, số đó sẽ lưu vào biến signbit
-	// lúc này ta dùng lệnh XNOR để kiểm tra, nếu zero=1 =>return 0, ngược lại nếu zero=0, signbit=1 là số âm=> return 0, zero=0, signbit=0 => return 1
+ return !(zero^signbit); //kiểm tra bit dấu bằng cách dịch phải 31 bit để lúc này số chỉ còn 1 bit dấu nằm ở trọng số thấp nhất, các bit còn lại sẽ=0, số đó sẽ lưu vào biến signbit
+					// lúc này ta dùng lệnh XNOR để kiểm tra, nếu zero=1 =>return 0, ngược lại nếu zero=0, signbit=1 là số âm=> return 0, zero=0, signbit=0 => return 1
 }
 
 // 2.4
