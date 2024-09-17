@@ -64,7 +64,7 @@ int mulpw2(int x, int n)
 int isSameSign(int x, int y)
 {
       /*
-    Ý tưởng: Để xét 2 số có cùng dấu, ta xét bit dấu của chúng, bằng cách dịch phải 31 lần để bit dấu nằm ở phải cùng , trái full 0.
+    Ý tưởng: Để xét 2 số có cùng dấu, ta xét bit dấu của chúng, bằng cách dịch phải 31 lần để bit dấu nằm ở phải cùng , phía bên trái toàn là số 0.
     Thực hiện:
         -   Dịch phải 31 bit số thứ nhất
         -   Dịch phải 31 bit số thứ hai
@@ -81,7 +81,9 @@ int isSameSign(int x, int y)
 // 2.2
 int is8x(int x)
 {
-    x=x<<29;   // Các số chia hết cho 8 đều có 3 bit cuối =0 nên ta sẽ dịch trái 29 bit để chỉ giữ 3 bit cuối trong số, vì các số chia hết cho 8 có 3 bit cuối là 0 nên lúc này số sau khi dịch trái sẽ bằng 0, ta dùng phũ định để xử lí vì ! các số khác 0 sẽ bằng 0 và !0 sẽ bằng 1
+    x=x<<29;  	// Các số chia hết cho 8 đều có 3 bit cuối =0 nên ta sẽ dịch trái 29 bit để chỉ giữ 3 bit cuối trong số, 
+		//vì các số chia hết cho 8 có 3 bit cuối là 0 nên lúc này số sau khi dịch trái sẽ bằng 0, 
+		//ta dùng phũ định để xử lí vì ! các số khác 0 sẽ bằng 0 và !0 sẽ bằng 1
 	return !x;
 }
 
@@ -89,9 +91,10 @@ int is8x(int x)
 
 int isPositive(int x)
 {
-    int zero=!x;        //bài toán sẽ kiểm tra bit dấu để xác định, tuy nhiên số 0 có bit dấu =0 nhưng return kq=0 nên phải có 1 biến zero dùng !x để kiểm tra có phải số 0 hay không
-    int signbit=x>>31;   //kiểm tra bit dấu bằng cách dịch phải 31 bit để lúc này số chỉ còn 1 bit dấu nằm ở trọng số thấp nhất, các bit còn lại sẽ=0, số đó sẽ lưu vào biến signbit
-	return !(zero^signbit);// lúc này ta dùng lệnh XNOR để kiểm tra, nếu zero=1 =>return 0, ngược lại nếu zero=0, signbit=1 là số âm=> return 0, zero=0, signbit=0 => return 1
+int zero=!x;        //bài toán sẽ kiểm tra bit dấu để xác định, tuy nhiên số 0 có bit dấu =0
+int signbit=x>>31; 	//nhưng return kq=0 nên phải có 1 biến zero dùng !x để kiểm tra có phải số 0 hay không
+ return !(zero^signbit);   //kiểm tra bit dấu bằng cách dịch phải 31 bit để lúc này số chỉ còn 1 bit dấu nằm ở trọng số thấp nhất, các bit còn lại sẽ=0, số đó sẽ lưu vào biến signbit
+	// lúc này ta dùng lệnh XNOR để kiểm tra, nếu zero=1 =>return 0, ngược lại nếu zero=0, signbit=1 là số âm=> return 0, zero=0, signbit=0 => return 1
 }
 
 // 2.4
