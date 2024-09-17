@@ -38,7 +38,7 @@ int negative(int x)
 int getByte(int x, int n)
 {
 	    // Dịch phải 8 bit, sau đó and với 11
-	return (x >> 8 * n) & 0xFF;
+	return (x >> (n << 3) & 0xFF;
 
 }
 
@@ -46,7 +46,7 @@ int getByte(int x, int n)
 int getnbit(int x, int n)
 {
 	// Tao mask bằng cách dịch trái xong - 1 để lấy các bits cuối là 1
-    int mask = (1 << n) - 1;
+	int mask = ~(~0 << n);
 	return x & mask;
 }
 
@@ -54,7 +54,7 @@ int getnbit(int x, int n)
 int mulpw2(int x, int n)
 {
 	 int shift = n >> 31;          // shift = -1 nếu n < 0, ngược lại là 0
-    int abs_n = (n ^ shift) - shift;  // Tính giá trị tuyệt đối của n
+    int abs_n = (n ^ shift) + (~shift + 1);  // Tính giá trị tuyệt đối của n
     return (x << ((~shift) & abs_n)) >> (shift & abs_n);  // Dịch trái hoặc phải tùy theo giá trị n
 }
 
